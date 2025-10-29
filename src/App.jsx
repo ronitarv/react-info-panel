@@ -2,14 +2,20 @@ import { useState } from 'react'
 import styles from "./css/App.module.css"
 import Clock from './components/Clock'
 import ElecPriceNow from './components/ElecPriceNow'
+import ElecPriceBarChart from './components/ElecPriceBarChart'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [date, setDate] = useState(new Date())
+
+  setTimeout(() => {
+    setDate(new Date())
+  }, 1000);
 
   return (
     <>
-    <Clock />
+    <Clock date={date} />
     <ElecPriceNow />
+    <ElecPriceBarChart date={date}/>
     </>
   )
 }

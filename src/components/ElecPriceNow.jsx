@@ -4,7 +4,6 @@ import infoService from "../services/info"
 const ElecPriceNow = () => {
   const [price, setPrice] = useState(0)
 
-
   useEffect(() => {
     infoService.getElecPriceNow()
     .then(p => {
@@ -17,7 +16,7 @@ const ElecPriceNow = () => {
     .then(p => {
       setPrice(p);
     }) 
-  }, 60*1000);
+  }, 1000);
   
   return (
     <div>

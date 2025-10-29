@@ -1,11 +1,6 @@
 import { useState, UseEffect } from 'react'
 
-const Clock = () => {
-  const [date, setDate] = useState(new Date())
-
-  setTimeout(() => {
-    setDate(new Date())
-  }, 1000);
+const Clock = ({date}) => {
 
   return (
     <div>
