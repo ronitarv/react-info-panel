@@ -5,25 +5,25 @@ import BarChart from "./BarChart"
 const ElecPriceBarChart = ({date}) => {
   const [data, setData] = useState([])
 
-
   useEffect(() => {
     infoService.getElecPriceLatest()
     .then(d => {
       setData(d);
     }) 
+    const interval = setInterval(() => {
+      infoService.getElecPriceLatest()
+      .then(d => {
+        setData(d);
+      }) 
+    },3600*60*1000)
+    return () => {
+      clearInterval(interval);
+    }
   },[])
 
-  setTimeout(() => {
-    infoService.getElecPriceLatest()
-    .then(p => {
-      setData(p);
-    }) 
-  }, 3600*12*1000);
-  
   return (
-    <div>
-      <h1>Elec prices graph</h1>
-      <BarChart data={data} width={1500} height={300} date={date}/>
+    <div id="ElecPricesChartContainer" style={{width: "100%", height: "100%"}}>
+      <BarChart data={data} date={date}/>
     </div>
   )
 }

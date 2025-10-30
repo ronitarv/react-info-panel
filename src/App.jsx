@@ -12,11 +12,13 @@ function App() {
   }, 1000);
 
   return (
-    <>
-    <Clock date={date} />
-    <ElecPriceNow />
-    <ElecPriceBarChart date={date}/>
-    </>
+    <div>
+      <div className={styles.TopInfo}>
+        <Clock date={date} />
+        <ElecPriceNow />
+      </div>
+      <div className={styles.Chart}><ElecPriceBarChart date={date}/></div>
+    </div>
   )
 }
 

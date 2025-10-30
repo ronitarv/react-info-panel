@@ -1,0 +1,8 @@
+.clock {
+  font-size: 10rem;
+  font-weight: bold;
+  background: linear-gradient(to top, rgb(55, 0, 255), rgb(230, 0, 255));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

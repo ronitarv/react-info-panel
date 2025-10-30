@@ -1,0 +1,11 @@
+.TopInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0rem 1.5rem;
+  height: 10vh;
+}
+
+.Chart {
+  height: calc(90vh - 4rem);
+}
