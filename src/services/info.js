@@ -1,7 +1,10 @@
 import axios from "axios"
 
-const elecPriceSingleUrl = "/api/porssisahko/v2/price.json"
-const elecPriceLatestUrl = "/api/porssisahko/v2/latest-prices.json"
+const baseUrl = import.meta.env.MODE === "development" ? 
+                "/api/porssisahko" : "https://api.porssisahko.net"
+
+const elecPriceSingleUrl = `${baseUrl}/v2/price.json`
+const elecPriceLatestUrl = `${baseUrl}/v2/latest-prices.json`
 
 const getElecPriceNow = async () => {
   console.log("FETHING PRICE NOW");
