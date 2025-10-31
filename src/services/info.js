@@ -1,21 +1,21 @@
 import axios from "axios"
 
-const baseUrl = import.meta.env.MODE === "development" ? 
-                "/api/porssisahko" : "https://api.porssisahko.net"
+const baseUrl = "/api/porssisahko"
 
-const elecPriceSingleUrl = `${baseUrl}/v2/price.json`
-const elecPriceLatestUrl = `${baseUrl}/v2/latest-prices.json`
+const elecPriceSingleUrl = `/v2/price.json`
+const elecPriceLatestUrl = `/v2/latest-prices.json`
 
 const getElecPriceNow = async () => {
   console.log("FETHING PRICE NOW");
   let date = new Date;
-  const req = await axios.get(`${elecPriceSingleUrl}?date=${date.toISOString()}`);
+  const req = await axios.get(baseUrl,
+    { params: {url: `${elecPriceSingleUrl}?date=${date.toISOString()}`}});
   return req.data.price
 }
 
 const getElecPriceLatest = async () => {
   console.log("FETHING LATEST PRICES")
-  const req = await axios.get(`${elecPriceLatestUrl}`);
+  const req = await axios.get(baseUrl, { params: {url: `${elecPriceLatestUrl}`} });
   const prices = req.data.prices.reverse();
   return prices.map((p, i) => ({ 
     key: i, 
