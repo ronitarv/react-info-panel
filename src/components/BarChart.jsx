@@ -41,8 +41,15 @@ const BarChart = ({ data, date }) => {
   const xAxis = d3.axisBottom(x)
   .ticks(20)
   .tickFormat(d3.timeFormat("%H:%M"))
+
+
   d3.select(this).style("font-size","100px")
   const yAxis = d3.axisLeft(y)
+
+  const yGrid = d3.axisLeft(y)
+  .tickSize(-chartWidth)
+  .tickFormat("")
+  .tickValues(y.ticks().slice(0,-1))
 
   return (
     <div ref={containerRef} style={{width: "100%", height: "100%"}}>
@@ -61,12 +68,13 @@ const BarChart = ({ data, date }) => {
             />
           ))}
           <g
-            className="x-axis"
+            className={styles.xAxis}
             transform={`translate(0,${chartHeight})`}
             ref={(node) => d3.select(node).call(xAxis)}
-            style={{fontSize: "2.2rem"}}
+            style={{fontSize: "2.2rem", strokeWidth: "1px", strokeOpacity: 0.2}}
           />
-          <g className="y-axis" ref={(node) => d3.select(node).call(yAxis)} style={{fontSize: "2.2rem"}} />
+          <g className={styles.yAxis} ref={(node) => d3.select(node).call(yAxis)} style={{fontSize: "2.2rem", strokeWidth: "1px", strokeOpacity: 0.2}} />
+          <g className="y-grid" ref={(node) => d3.select(node).call(yGrid)} style={{stroke: "red", strokeWidth: "1px", strokeOpacity: 0.5}}/>
         </g>
       </svg>
     </div>
